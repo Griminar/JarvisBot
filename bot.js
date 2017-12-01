@@ -27,10 +27,10 @@ client.on('ready', () => {
   //user = client.users.find("username", "Bala");
 
   //console.log(user.id);
-  if(user != null)
-  {
+  //if(user != null)
+  //{
     channel.send("Bot Online");
-  }
+  //}
 
   //
 });
