@@ -24,13 +24,13 @@ client.on('ready', () => {
   server = client.guilds.find("name","Descendance");
   channel = server.channels.find("name", "bot");
 
-  user = client.users.find("username", "Bala");
+  //user = client.users.find("username", "Bala");
 
-  //console.log(user.id);
-  //if(user != null)
-  //{
-    //channel.send("Bot Online");
-  //}
+  console.log(user.id);
+  if(user != null)
+  {
+    channel.send("Bot Online");
+  }
 
   //
 });
@@ -64,11 +64,7 @@ client.on('message', message => {
     }
 
 
-    if (message.author.username != 'test-bot' && message.content == '!roll'&& message.channel.name == 'bot') {
-      // Send "pong" to the same channel
-      //&& message.guild.name == 'Dave'
-      message.channel.send('Result: ' + (Math.random() * (100 - 1) + 1).toFixed(0));
-    }
+
     // If the message is "ping"
     if (message.channel.name == 'bot' && message.content == 'omegalul') {
       // Send "pong" to the same channel
@@ -89,10 +85,23 @@ client.on('message', message => {
     }
   }
 
-  if(message.content == 'dis')
-  {
-    client.logout();
+  if (message.author.username != 'test-bot' && message.content == '!'&& message.channel.name == 'bot') {
+
+    if (message.author.username != 'test-bot' && message.content == '!roll'&& message.channel.name == 'bot') {
+    // Send "pong" to the same channel
+    //&& message.guild.name == 'Dave'
+      message.channel.send('Result: ' + (Math.random() * (100 - 1) + 1).toFixed(0));
+    }
+    else{
+      message.channel.send('I dont know that command. <:FeelsBadMan:281864901050368010>');
+    }
   }
+
+
+  //if(message.content == 'dis')
+  //{
+    //client.logout();
+  //}
 
   console.log(message.author.username);
   console.log(message.member.nickname);
