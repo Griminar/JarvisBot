@@ -85,7 +85,7 @@ client.on('message', message => {
     }
   }
 
-  if (message.author.username != 'test-bot' && message.content == '!'&& message.channel.name == 'bot') {
+  if (message.author.username != 'test-bot' && message.content.startsWith("!") && message.channel.name == 'bot') {
 
     if (message.author.username != 'test-bot' && message.content == '!roll'&& message.channel.name == 'bot') {
     // Send "pong" to the same channel
