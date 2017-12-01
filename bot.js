@@ -38,7 +38,7 @@ client.on('ready', () => {
 // Create an event listener for messages
 client.on('message', message => {
 
-  console.log(message);
+  //console.log(message);
 	if(message.author.username == '090Furci')
 	{
 		message.channel.send('Fuck off ' + message.author.username);
