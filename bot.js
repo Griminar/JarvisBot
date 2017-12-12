@@ -4,6 +4,11 @@
 
 // Import the discord.js module
 const Discord = require('discord.js');
+var handler = require('./messageHandler');
+var xml2js = require('xml2js');
+var fs = require('fs');
+
+
 
 console.log('I am loaded!');
 
@@ -29,7 +34,7 @@ client.on('ready', () => {
   //console.log(user.id);
   //if(user != null)
   //{
-    channel.send("Bot Online");
+    //channel.send("Bot Online");
   //}
 
   //
@@ -38,78 +43,16 @@ client.on('ready', () => {
 // Create an event listener for messages
 client.on('message', message => {
 
-  //console.log(message);
-	if(message.author.username == '090Furci')
-	{
-		message.channel.send('Fuck off ' + message.author.username);
+handler.parseMessage(message);
 
-	}
-  else {
-    if (message.author.username != 'test-bot' && (message.content == 'Hello' || message.content == 'hello') && message.channel.name == 'bot')
-    {
-      // Send "pong" to the same channel
-      //&& message.guild.name == 'Dave'
-  	if(message.member.nickname != null)
-  	{
-  		 message.channel.send('Hello, ' + message.member.nickname);
-  	}
-  	else{
-  		message.channel.send('Hello, ' + message.author.username);
-  	}
+});
 
-    }
-    if (message.channel.name == 'bot' && message.content == 'disassemble') {
-      // Send "pong" to the same channel
-      message.channel.send('<:monkaS:380479846117277696>');
-    }
-
-
-
-    // If the message is "ping"
-    if (message.channel.name == 'bot' && message.content == 'omegalul') {
-      // Send "pong" to the same channel
-      const lul = client.emojis.find("name", "OmegaLuL");
-      message.channel.send('<:OmegaLuL:332246664440184852>');
-    }
-
-  //bad bot
-    if (message.channel.name == 'bot' && (message.content == 'stupid bot' || message.content == 'bad bot'))
-    {
-      message.channel.send('<:FeelsBadMan:281864901050368010>');
-    }
-
-    //good bot
-    if (message.channel.name == 'bot' && (message.content == 'good bot' || message.content == 'clever bot'))
-    {
-      message.channel.send('<:FeelsOkayMan:366002573477412865>');
-    }
-  }
-
-  if (message.author.username != 'test-bot' && message.content.startsWith("!") && message.channel.name == 'bot') {
-
-    if (message.author.username != 'test-bot' && message.content == '!roll'&& message.channel.name == 'bot') {
-    // Send "pong" to the same channel
-    //&& message.guild.name == 'Dave'
-      message.channel.send('Result: ' + (Math.random() * (100 - 1) + 1).toFixed(0));
-    }
-    else{
-      message.channel.send('I dont know that command. <:FeelsBadMan:281864901050368010>');
-    }
-  }
-
-
-  //if(message.content == 'dis')
-  //{
-    //client.logout();
-  //}
-
-  console.log(message.author.username);
-  console.log(message.member.nickname);
-  //message.channel.send(message.author.username);
-  /*if (message.author === 'Griminar') {
-    // Send "pong" to the same channel
-    message.channel.send('pong');
-  }*/
+var parser = new xml2js.Parser();
+fs.readFile(__dirname + '/test.xml', function(err, data) {
+    parser.parseString(data, function (err, result) {
+        console.dir(result);
+        console.log('Done');
+    });
 });
 
 // Log our bot in
